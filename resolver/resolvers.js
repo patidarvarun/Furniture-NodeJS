@@ -1,4 +1,5 @@
 const Product = require("../models/Product.model");
+
 const resolvers = {
   Query: {
     getAllProduct: async () => {
