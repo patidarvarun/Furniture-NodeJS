@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^3.10.0",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-graphql": "^0.12.0",
     "graphql": "^16.5.0",
+    "jsonwebtoken": "^8.5.1",
     "make-executable-schema": "^5.0.2",
     "mongoose": "^6.4.6",
     "nodemon": "^2.0.19"
