@@ -17,11 +17,7 @@ const productTypeDefs = gql`
     getAllProduct: [Product]
     getProductById(id: ID): Product
   }
-  type File {
-    filename: String!
-    mimetype: String!
-    encoding: String!
-  }
+
   input ProductInput {
     name: String
     price: String
@@ -35,7 +31,6 @@ const productTypeDefs = gql`
     createProduct(product: ProductInput): Product
     deleteProduct(id: ID): String
     updateProduct(id: ID, product: ProductInput): Product
-    singleUpload(file: Upload!): File!
   }
 `;
 module.exports = productTypeDefs;

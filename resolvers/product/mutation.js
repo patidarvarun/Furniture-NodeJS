@@ -58,18 +58,6 @@ const productMutations = {
     );
     return product;
   },
-  singleUpload: (parent, args) => {
-    console.log("SSSSSSSSSSSSS", args);
-    return args.file.then((file) => {
-      const { createReadStream, filename, mimetype } = file;
-
-      const fileStream = createReadStream();
-
-      fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`));
-
-      return file;
-    });
-  },
 };
 
 module.exports = productMutations;
