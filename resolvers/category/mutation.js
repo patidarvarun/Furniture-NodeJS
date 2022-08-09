@@ -18,18 +18,26 @@ const categoryMutations = {
     return category;
   },
 
-  // uploadFile: async (parent, { file }) => {
-  //   const { createReadStream, filename } = await file;
-
-  //   const stream = createReadStream();
-
-  //   console.log("8888888888888877", stream);
-  //   const pathName = path.join(__dirname, `/public/images/${filename}`);
-  //   await stream.pipe(fs.createWriteStream(pathName));
-  //   console.log("!!!!!!!", filename);
-  //   return { url: `http://localhost:5000/images/${filename}` };
-  // },
-
+  updateCategory: async (parent, args, context, info) => {
+    const { id } = args;
+    const { name, icon } = args.category;
+    const categorys = await Category.findByIdAndUpdate(
+      id,
+      {
+        name,
+        icon,
+      },
+      {
+        new: true,
+      }
+    );
+    return categorys;
+  },
+  deleteCategory: async (parent, args, context, info) => {
+    const { id } = args;
+    await Category.findByIdAndDelete(id);
+    return "Category is deleted";
+  },
   uploadFile: async (parent, { file }) => {
     const { createReadStream, filename, mimetype, encoding } = await file;
     console.log("$$$$$$$$$$$file", file);
@@ -41,5 +49,15 @@ const categoryMutations = {
     return { filename, mimetype, encoding };
   },
 };
+
+// uploadFile: async (parent, { file }) => {
+//   const { createReadStream, filename } = await file;
+//   const stream = createReadStream();
+//   console.log("8888888888888877", stream);
+//   const pathName = path.join(__dirname, `/public/images/${filename}`);
+//   await stream.pipe(fs.createWriteStream(pathName));
+//   console.log("!!!!!!!", filename);
+//   return { url: `http://localhost:5000/images/${filename}` };
+// },
 
 module.exports = categoryMutations;

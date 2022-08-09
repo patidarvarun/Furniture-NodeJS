@@ -5,7 +5,10 @@ const categoryQueries = {
   },
 
   getCatByParentId: async (parent, { id }, context, info) => {
-    return await Category.findById(id);
+    const newData = await Category.find({
+      $or: [{ parent_id: id }],
+    });
+    return newData;
   },
 };
 module.exports = categoryQueries;

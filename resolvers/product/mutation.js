@@ -1,32 +1,26 @@
 const Product = require("../../models/Product.model");
 const multer = require("multer");
 const fs = require("fs");
-
-///home/varun/Desktop/Furniture-NodeJS/uploads
+const ba64 = require("ba64");
+var crypto = require("crypto");
 
 const productMutations = {
   createProduct: async (parent, args, context, info) => {
     const { name, price, description, image, quantity, cat_id } = args.product;
 
-    // const uploadd = multer({ dest: `uploads/${image}` });
-    // exports.upload = multer({ storage: uploadd });
+    var randomStr = `uploads/image` + crypto.randomBytes(8).toString("hex");
 
-    // const storage = multer.diskStorage({
-    //   destination: function (req, file, cb) {
-    //     cb(null, `./uploads/`);
-    //   },
-    //   filename: function (req, file, cb) {
-    //     cb(null, Date.now() + file.image);
-    //   },
-    // });
-    // exports.upload = multer({ storage: storage });
+    data_url = image;
 
-    // console.log("@@@@@@@@", upload);
+    ba64.writeImage(`./` + randomStr, data_url, function (err) {
+      if (err) throw err;
+    });
+
     const product = new Product({
       name,
       price,
       description,
-      image,
+      image: randomStr,
       quantity,
       cat_id,
     });

@@ -21,7 +21,7 @@ const categoryTypeDef = gql`
 
   type Query {
     getAllCategory: [Category]
-    getCatByParentId(id: ID): Category
+    getCatByParentId(id: ID): [Category]
   }
 
   input CategoryInput {
@@ -29,9 +29,16 @@ const categoryTypeDef = gql`
     icon: String
     parent_id: String
   }
+  input CategoryInput1 {
+    name: String
+    icon: String
+  }
 
   type Mutation {
     createCategory(category: CategoryInput): Category
+    updateCategory(id: ID, category: CategoryInput1): Category
+    deleteCategory(id: ID): String
+
     uploadFile(file: Upload!): File!
     # singleUpload(file: Upload!): File!
   }

@@ -10,7 +10,7 @@ const ProductSchema = new mongoose.Schema(
     quantity: { type: Number, required: [true, "Pleade provide quantity"] },
     cat_id: {
       type: Schema.Types.ObjectId,
-      ref: "prodCategorys",
+      ref: "Category",
       required: [true, "please enter Cat_id"],
     },
   },
