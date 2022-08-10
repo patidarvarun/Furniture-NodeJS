@@ -4,15 +4,27 @@ const Schema = mongoose.Schema;
 const ProductSchema = new mongoose.Schema(
   {
     name: { type: String, required: [true, "please enter name"] },
-    price: { type: Number, required: [true, "please enter price"] },
-    description: { type: String, required: [true, "please enter description"] },
     image: { type: String },
+    description: { type: String, required: [true, "please enter description"] },
     quantity: { type: Number, required: [true, "Pleade provide quantity"] },
+    price: { type: Number, required: [true, "Pleade provide price"] },
+    status: { type: String },
     cat_id: {
       type: Schema.Types.ObjectId,
       ref: "Category",
       required: [true, "please enter Cat_id"],
     },
+    varient_id: {
+      type: Schema.Types.ObjectId,
+      ref: "productValues",
+      required: false,
+    },
+    offerId: {
+      type: Schema.Types.ObjectId,
+      ref: "productOffers",
+      required: false,
+    },
+    visitedNumberOfTime: { type: Number },
   },
   { timestamps: true }
 );
