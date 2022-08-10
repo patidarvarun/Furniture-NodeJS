@@ -3,8 +3,6 @@ const port = process.env.PORT || "5000";
 const { ApolloServer } = require("apollo-server-express");
 const schema = require("./types");
 const express = require("express");
-const path = require("path");
-// const { graphqlUploadExpress } = require("graphql-upload");
 const app = express();
 app.use(express.json());
 

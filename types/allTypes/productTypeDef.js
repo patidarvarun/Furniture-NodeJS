@@ -1,8 +1,6 @@
 const { gql } = require("apollo-server-express");
 
 const productTypeDefs = gql`
-  scalar Upload
-
   type Product {
     id: ID
     name: String
