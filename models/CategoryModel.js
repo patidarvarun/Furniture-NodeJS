@@ -1,10 +1,10 @@
-const mongoose = require("mongoose");
+var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Category = Schema({
+const Categories = new mongoose.Schema({
   name: { type: String, required: [true, "Please Enter Category Name"] },
   image: { type: String, required: [true, "Please Upload Image"] },
 });
 
-var category = mongoose.model("prodCategorys", Category);
-module.exports = category;
+var Category = mongoose.model("prodCategorys", Categories);
+module.exports = Category;
