@@ -18,10 +18,8 @@ async function startServer() {
 
   apolloServer.applyMiddleware({ app: app });
 
-  app.use((req, res) => {
-    res.send(`<H1>Furniture Start</H1>`);
-  });
-
+  app.use(express.static(__dirname + "/public"));
+  app.use("/uploads", express.static("uploads"));
   app.listen(port, () => {
     console.log(`server is running on port ${port}`);
   });

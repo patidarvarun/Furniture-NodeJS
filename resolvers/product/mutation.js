@@ -1,32 +1,25 @@
-const Product = require("../../models/Product.model");
-const multer = require("multer");
-const fs = require("fs");
-
-///home/varun/Desktop/Furniture-NodeJS/uploads
+const Product = require("../../models/ProductModel");
+const ba64 = require("ba64");
+var crypto = require("crypto");
 
 const productMutations = {
   createProduct: async (parent, args, context, info) => {
     const { name, price, description, image, quantity, cat_id } = args.product;
-    console.log("@@@@@@@@@@@@", image);
-    // const uploadd = multer({ dest: `uploads/${image}` });
-    // exports.upload = multer({ storage: uploadd });
+    //for image-------
+    var randomStr = `uploads/image` + crypto.randomBytes(8).toString("hex");
+    data_url = image;
+    const body2 = { profilepic: data_url };
+    let mimeType2 = body2.profilepic.match(/[^:/]\w+(?=;|,)/)[0];
+    let ext = randomStr + "." + mimeType2;
+    ba64.writeImage(`./` + randomStr, data_url, function (err) {
+      if (err) throw err;
+    });
 
-    // const storage = multer.diskStorage({
-    //   destination: function (req, file, cb) {
-    //     cb(null, `./uploads/`);
-    //   },
-    //   filename: function (req, file, cb) {
-    //     cb(null, Date.now() + file.image);
-    //   },
-    // });
-    // exports.upload = multer({ storage: storage });
-
-    // console.log("@@@@@@@@", upload);
     const product = new Product({
       name,
       price,
       description,
-      image,
+      image: ext,
       quantity,
       cat_id,
     });
@@ -42,13 +35,23 @@ const productMutations = {
   updateProduct: async (parent, args, context, info) => {
     const { id } = args;
     const { name, price, description, image, quantity, cat_id } = args.product;
+
+    var randomStr = `uploads/image` + crypto.randomBytes(8).toString("hex");
+    data_url = image;
+    const body2 = { profilepic: data_url };
+    let mimeType2 = body2.profilepic.match(/[^:/]\w+(?=;|,)/)[0];
+    let ext = randomStr + "." + mimeType2;
+    ba64.writeImage(`./` + randomStr, data_url, function (err) {
+      if (err) throw err;
+    });
+
     const product = await Product.findByIdAndUpdate(
       id,
       {
         name,
         price,
         description,
-        image,
+        image: ext,
         quantity,
         cat_id,
       },
@@ -57,18 +60,6 @@ const productMutations = {
       }
     );
     return product;
-  },
-  singleUpload: (parent, args) => {
-    console.log("SSSSSSSSSSSSS", args);
-    return args.file.then((file) => {
-      const { createReadStream, filename, mimetype } = file;
-
-      const fileStream = createReadStream();
-
-      fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`));
-
-      return file;
-    });
   },
 };
 
