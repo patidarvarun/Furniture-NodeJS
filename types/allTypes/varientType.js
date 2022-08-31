@@ -4,15 +4,11 @@ const varientTypeDefs = gql`
   type Varient {
     id: ID
     name: String
-    product_id: String
+    product_id: Product
   }
-  type VarientData {
-    id: ID
-    name: String
-    product_id: [Product]
-  }
+
   type Query {
-    getVarient: [VarientData]
+    getVarient: [Varient]
   }
   input VarientInput {
     name: String

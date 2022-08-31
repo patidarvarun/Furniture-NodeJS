@@ -18,12 +18,12 @@ const ProductOffer = new mongoose.Schema(
     product_id: {
       type: Schema.Types.ObjectId,
       ref: "products",
-      required: [true, "please enter ProductId_id"],
+      // required: [true, "please enter ProductId_id"],
     },
     cat_id: {
       type: Schema.Types.ObjectId,
       ref: "Category",
-      required: [true, "please enter Cat_id"],
+      // required: [true, "please enter Cat_id"],
     },
     isDeleted: { type: Boolean },
   },

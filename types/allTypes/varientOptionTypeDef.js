@@ -10,8 +10,8 @@ const varientOptionTypeDef = gql`
   type VarientOpt {
     id: ID
     name: String
-    product_id: [Product]
-    varient_id: [Varient]
+    product_id: Product
+    varient_id: Varient
   }
 
   type Query {

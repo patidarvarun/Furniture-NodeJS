@@ -8,6 +8,8 @@ const varientQueries = require("./varient/queries");
 const varientMutations = require("./varient/mutation");
 const varientOptionQueries = require("./varientOption/queries");
 const varientOptionMutations = require("./varientOption/mutation");
+const productValueQueries = require("./productValue/queries");
+const productValueMutations = require("./productValue/mutation");
 
 const resolvers = {
   Query: {
@@ -16,6 +18,7 @@ const resolvers = {
     ...userQueries,
     ...varientQueries,
     ...varientOptionQueries,
+    ...productValueQueries,
   },
   Mutation: {
     ...productMutations,
@@ -23,6 +26,7 @@ const resolvers = {
     ...userMutation,
     ...varientMutations,
     ...varientOptionMutations,
+    ...productValueMutations,
   },
 };
 module.exports = resolvers;
