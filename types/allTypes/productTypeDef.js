@@ -8,7 +8,7 @@ const productTypeDefs = gql`
     description: String
     image: String
     quantity: String
-    cat_id: String
+    cat_id: Category
   }
 
   type Query {

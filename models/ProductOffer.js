@@ -13,7 +13,7 @@ const ProductOffer = new mongoose.Schema(
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "users",
-      required: [true, "please enter User_id"],
+      // required: [true, "please enter User_id"],
     },
     product_id: {
       type: Schema.Types.ObjectId,

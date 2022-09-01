@@ -10,6 +10,10 @@ const varientOptionQueries = require("./varientOption/queries");
 const varientOptionMutations = require("./varientOption/mutation");
 const productValueQueries = require("./productValue/queries");
 const productValueMutations = require("./productValue/mutation");
+const productOfferMutations = require("./productOffer/mutation");
+const productOfferQueries = require("./productOffer/queries");
+const favoriteMutations = require("./favoriteProduct/mutation");
+const favoriteQueries = require("./favoriteProduct/queries");
 
 const resolvers = {
   Query: {
@@ -19,6 +23,8 @@ const resolvers = {
     ...varientQueries,
     ...varientOptionQueries,
     ...productValueQueries,
+    ...productOfferQueries,
+    ...favoriteQueries,
   },
   Mutation: {
     ...productMutations,
@@ -27,6 +33,8 @@ const resolvers = {
     ...varientMutations,
     ...varientOptionMutations,
     ...productValueMutations,
+    ...productOfferMutations,
+    ...favoriteMutations,
   },
 };
 module.exports = resolvers;

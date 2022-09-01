@@ -1,56 +1,35 @@
 const ProductOffer = require("../../models/ProductOffer");
 
-const productMutations = {
+const productOfferMutations = {
   createProductOffer: async (parent, args, context, info) => {
-    const { name, price, description, image, quantity, cat_id } =
-      args.productOffer;
-
-    const product = new ProductOffer({
-      name,
-      price,
+    const {
+      message,
       description,
-      image: ext,
-      quantity,
+      user_id,
+      discount_value,
+      type,
+      product_id,
+      cat_id,
+    } = args.productOffer;
+
+    const productOffer = new ProductOffer({
+      message,
+      description,
+      user_id,
+      discount_value,
+      type,
+      product_id,
       cat_id,
     });
-    await product.save();
-    return product;
-  },
-  deleteProduct: async (parent, args, context, info) => {
-    const { id } = args;
-    await Product.findByIdAndDelete(id);
-    return "Product is deleted";
+    await productOffer.save();
+    return productOffer;
   },
 
-  updateProduct: async (parent, args, context, info) => {
+  deleteProductoffer: async (parent, args, context, info) => {
     const { id } = args;
-    const { name, price, description, image, quantity, cat_id } = args.product;
-
-    var randomStr = `uploads/image` + crypto.randomBytes(8).toString("hex");
-    data_url = image;
-    const body2 = { profilepic: data_url };
-    let mimeType2 = body2.profilepic.match(/[^:/]\w+(?=;|,)/)[0];
-    let ext = randomStr + "." + mimeType2;
-    ba64.writeImage(`./` + randomStr, data_url, function (err) {
-      if (err) throw err;
-    });
-
-    const product = await Product.findByIdAndUpdate(
-      id,
-      {
-        name,
-        price,
-        description,
-        image: ext,
-        quantity,
-        cat_id,
-      },
-      {
-        new: true,
-      }
-    );
-    return product;
+    await ProductOffer.findByIdAndDelete(id);
+    return "ProductOffer is deleted";
   },
 };
 
-module.exports = productMutations;
+module.exports = productOfferMutations;
