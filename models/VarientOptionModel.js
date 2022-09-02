@@ -10,5 +10,5 @@ const VarientOption = new mongoose.Schema(
   { timestamps: true }
 );
 
-var VarientOptions = mongoose.model("varientOptions", VarientOption);
-module.exports = VarientOptions;
+var VarientOptionss = mongoose.model("varientOptions", VarientOption);
+module.exports = VarientOptionss;

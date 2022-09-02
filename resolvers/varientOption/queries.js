@@ -1,14 +1,10 @@
-const VarientOptionn = require("../../models/VarientOptionModel");
+const VarientOptions = require("../../models/VarientOptionModel");
 
 const varientOptionQueries = {
   getAllOption: async () => {
-    const result = await VarientOptionn.find()
+    return await VarientOptions.find()
       .populate({ path: "product_id" })
-      .populate({ path: "varient_id" })
-      .then((data) => {
-        console.log("@@@@@@@@@@@@@", data);
-      });
-    return result;
+      .populate({ path: "varient_id" });
   },
 };
 

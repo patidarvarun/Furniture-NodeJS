@@ -24,6 +24,37 @@ const ProductSchema = new mongoose.Schema(
       ref: "productOffers",
       required: false,
     },
+    user: [
+      {
+        user_id: {
+          type: Schema.Types.ObjectId,
+        },
+        like: {
+          type: Boolean,
+        },
+      },
+    ],
+    rating: [
+      {
+        user_id: {
+          type: Schema.Types.ObjectId,
+        },
+        star: {
+          type: Number,
+        },
+      },
+    ],
+    comment: [
+      {
+        user_id: {
+          type: Schema.Types.ObjectId,
+          ref: "users",
+        },
+        comment: {
+          type: Number,
+        },
+      },
+    ],
     visitedNumberOfTime: { type: Number },
   },
   { timestamps: true }
