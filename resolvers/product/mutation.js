@@ -61,6 +61,26 @@ const productMutations = {
     );
     return product;
   },
+
+  productReview: async (parent, args, context, info) => {
+    const { id } = args;
+    const { user_id, comment } = args.product;
+    const review = {
+      user_id: user_id,
+      comment: comment,
+    };
+    const productReview = await Product.findByIdAndUpdate(
+      id,
+      {
+        $push: { review: { user_id: user_id, comment: comment } },
+      },
+      {
+        new: true,
+      }
+    );
+    console.log("@@@@@@@@@@@", productReview);
+    return productReview;
+  },
 };
 
 module.exports = productMutations;

@@ -44,14 +44,14 @@ const ProductSchema = new mongoose.Schema(
         },
       },
     ],
-    comment: [
+    review: [
       {
         user_id: {
           type: Schema.Types.ObjectId,
           ref: "users",
         },
         comment: {
-          type: Number,
+          type: String,
         },
       },
     ],
