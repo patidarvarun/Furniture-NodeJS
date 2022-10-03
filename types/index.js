@@ -9,6 +9,7 @@ const varientOption = require("./allTypes/varientOptionTypeDef");
 const productValue = require("./allTypes/productValueType");
 const productOffer = require("./allTypes/productOfferType");
 const favorite = require("./allTypes/favoriteType");
+const review = require("./allTypes/productReviewType");
 
 const schema = makeExecutableSchema({
   typeDefs: [
@@ -20,6 +21,7 @@ const schema = makeExecutableSchema({
     productValue,
     productOffer,
     favorite,
+    review,
   ],
   resolvers,
 });

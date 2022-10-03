@@ -1,9 +1,10 @@
 var mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const Review = new mongoose.Schema(
+const Reviews = new mongoose.Schema(
   {
     message: { type: String, required: [true, "please enter message"] },
+    rating: { type: Number, required: [true, "please enter rating"] },
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "users",
@@ -14,9 +15,10 @@ const Review = new mongoose.Schema(
       ref: "products",
       required: [true, "please enter ProductId_id"],
     },
+    isDeleted: { type: Boolean },
   },
   { timestamps: true }
 );
 
-var Reviews = mongoose.model("reviews", Review);
-module.exports = Reviews;
+var Review = mongoose.model("reviews", Reviews);
+module.exports = Review;
