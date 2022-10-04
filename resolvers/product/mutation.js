@@ -62,11 +62,11 @@ const productMutations = {
     return product;
   },
 
-  // productReview: async (parent, args, context, info) => {
+  // productsReview: async (parent, args, context, info) => {
   //   const { id } = args;
-  //   const { user_id, comment } = args.product;
+  //   const { user_id, comment } = args.review;
 
-  //   const productReview = await Product.findByIdAndUpdate(
+  //   const prodReview = await Product.findByIdAndUpdate(
   //     id,
   //     {
   //       $push: { review: { user_id: user_id, comment: comment } },
@@ -75,8 +75,8 @@ const productMutations = {
   //       new: true,
   //     }
   //   );
-  //   console.log("@@@@@@@@@@@", productReview);
-  //   return productReview;
+  //   console.log("@@@@@@@@@@@", prodReview);
+  //   return prodReview;
   // },
 };
 

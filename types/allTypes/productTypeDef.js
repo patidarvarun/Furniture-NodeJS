@@ -8,7 +8,7 @@ const productTypeDefs = gql`
     description: String
     image: String
     quantity: String
-    # review: [String!]!
+    # review: Review
     cat_id: Category
   }
   type Query {
@@ -23,7 +23,7 @@ const productTypeDefs = gql`
     quantity: String
     cat_id: String
   }
-  # input ProductReviewInput {
+  # input ReviewInput {
   #   comment: String
   #   user_id: ID
   # }
@@ -32,7 +32,7 @@ const productTypeDefs = gql`
     createProduct(product: ProductInput): Product
     deleteProduct(id: ID): String
     updateProduct(id: ID, product: ProductInput): Product
-    # productReview(id: ID, product: ProductReviewInput): Product
+    # productsReview(id: ID, review: ReviewInput): Product
   }
 `;
 module.exports = productTypeDefs;

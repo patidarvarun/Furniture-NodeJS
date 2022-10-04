@@ -14,6 +14,14 @@ const ProductSchema = new mongoose.Schema(
       ref: "Category",
       required: [true, "please enter Cat_id"],
     },
+
+    review: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+
     varient_id: {
       type: Schema.Types.ObjectId,
       ref: "productValues",
@@ -24,37 +32,39 @@ const ProductSchema = new mongoose.Schema(
       ref: "productOffers",
       required: false,
     },
-    user: [
-      {
-        user_id: {
-          type: Schema.Types.ObjectId,
-        },
-        like: {
-          type: Boolean,
-        },
-      },
-    ],
-    rating: [
-      {
-        user_id: {
-          type: Schema.Types.ObjectId,
-        },
-        star: {
-          type: Number,
-        },
-      },
-    ],
-    review: [
-      {
-        user_id: {
-          type: Schema.Types.ObjectId,
-          // ref: "users",
-        },
-        comment: {
-          type: String,
-        },
-      },
-    ],
+    // user: [
+    //   {
+    //     user_id: {
+    //       type: Schema.Types.ObjectId,
+    //     },
+    //     like: {
+    //       type: Boolean,
+    //     },
+    //   },
+    // ],
+    // rating: [
+    //   {
+    //     user_id: {
+    //       type: Schema.Types.ObjectId,
+    //     },
+    //     star: {
+    //       type: Number,
+    //     },
+    //   },
+    // ],
+
+    //   review: [
+    //     {
+
+    //         // user_id: {
+    //         //   type: Schema.Types.ObjectId,
+    //         //   // ref: "users",
+    //         // },
+    //         // comment: {
+    //         //   type: String,
+    //         // },
+
+    // }],
     visitedNumberOfTime: { type: Number },
   },
   { timestamps: true }

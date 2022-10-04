@@ -5,8 +5,8 @@ const productReviewType = gql`
     id: ID
     message: String
     rating: String
-    user_id: User
-    product_id: Product
+    user_id: String
+    product_id: String
   }
   type Query {
     getReviewProduct: [ProductReview]!
