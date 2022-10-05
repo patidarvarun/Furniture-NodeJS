@@ -15,13 +15,12 @@ const productReviewMutations = {
         let revs = await Product.findByIdAndUpdate(
           product_id,
           {
-            $push: { review: res._id },
+            $push: { review: { reviewArr: res._id } },
           },
           {
             new: true,
           }
         );
-        console.log("revsrevs", revs);
       } else {
         console.log("okk");
       }

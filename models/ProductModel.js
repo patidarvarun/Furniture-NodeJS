@@ -15,12 +15,12 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "please enter Cat_id"],
     },
 
-    review: [
-      {
+    review: {
+      reviewArr: {
         type: Schema.Types.ObjectId,
         ref: "Review",
       },
-    ],
+    },
 
     varient_id: {
       type: Schema.Types.ObjectId,

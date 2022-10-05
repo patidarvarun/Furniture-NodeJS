@@ -8,7 +8,7 @@ const productTypeDefs = gql`
     description: String
     image: String
     quantity: String
-    # review: Review
+    review: ProReview
     cat_id: Category
   }
   type Query {
