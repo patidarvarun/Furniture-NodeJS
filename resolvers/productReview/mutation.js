@@ -12,10 +12,10 @@ const productReviewMutations = {
     });
     await productReview.save().then(async (res) => {
       if (res) {
-        let revs = await Product.findByIdAndUpdate(
+        await Product.findByIdAndUpdate(
           product_id,
           {
-            $push: { review: { reviewArr: res._id } },
+            $push: { review: res._id },
           },
           {
             new: true,

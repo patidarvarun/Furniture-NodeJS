@@ -1,34 +1,29 @@
 const Product = require("../../models/ProductModel");
-const Review = require("../../models/ReviewModels");
 
 const productQueries = {
   getAllProduct: async () => {
+    // let arr = [];
     let result = await Product.find()
       .populate({ path: "cat_id" })
       .populate({
-        path: "review.reviewArr",
+        path: "varientOption",
+        populate: {
+          path: "varient_id",
+        },
+      })
+      .populate({
+        path: "review",
         populate: {
           path: "user_id",
         },
       });
-    let paymentArray = [];
-    var itemObj = {};
-    for (var i = 0; i < result.length; i++) {
-      itemObj["userreview"] = "hhhhhhhh"; // product variant value id
-
-      paymentArray.push(itemObj);
-    }
-    console.log("@@@@@@@@@@@", paymentArray);
-
-    console.log(result, "ssss");
-
-    //   for (user in result) {
-    //     // console.log("#######", result[i].review);
-
-    //     result[user].UserReview = "jaydeep";
-    //   }
-    //   console.log(result, "hhhss");
-    //   return result;
+    // var obj = [];
+    // for (user in result) {
+    //   result[user].UserReview = "Varrr";
+    //   obj.push(result[user]);
+    // }
+    // console.log(obj);
+    return result;
   },
   getProductById: async (parent, { id }, context, info) => {
     return await Product.findById(id);

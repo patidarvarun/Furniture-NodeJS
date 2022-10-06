@@ -14,57 +14,21 @@ const ProductSchema = new mongoose.Schema(
       ref: "Category",
       required: [true, "please enter Cat_id"],
     },
-
-    review: {
-      reviewArr: {
+    review: [
+      {
         type: Schema.Types.ObjectId,
         ref: "Review",
       },
-    },
-
-    varient_id: {
+    ],
+    varientOption: {
       type: Schema.Types.ObjectId,
-      ref: "productValues",
-      required: false,
+      ref: "varientOptions",
     },
-    offerId: {
-      type: Schema.Types.ObjectId,
-      ref: "productOffers",
-      required: false,
-    },
-    // user: [
-    //   {
-    //     user_id: {
-    //       type: Schema.Types.ObjectId,
-    //     },
-    //     like: {
-    //       type: Boolean,
-    //     },
-    //   },
-    // ],
-    // rating: [
-    //   {
-    //     user_id: {
-    //       type: Schema.Types.ObjectId,
-    //     },
-    //     star: {
-    //       type: Number,
-    //     },
-    //   },
-    // ],
+    // offerId: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "productOffers",
+    // },
 
-    //   review: [
-    //     {
-
-    //         // user_id: {
-    //         //   type: Schema.Types.ObjectId,
-    //         //   // ref: "users",
-    //         // },
-    //         // comment: {
-    //         //   type: String,
-    //         // },
-
-    // }],
     visitedNumberOfTime: { type: Number },
   },
   { timestamps: true }

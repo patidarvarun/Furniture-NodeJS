@@ -1,4 +1,5 @@
 const VarientOptionss = require("../../models/VarientOptionModel");
+const Product = require("../../models/ProductModel");
 
 const varientOptionMutations = {
   createVarientOption: async (parent, args, context, info) => {
@@ -9,7 +10,21 @@ const varientOptionMutations = {
       product_id,
       varient_id,
     });
-    await varientOptions.save();
+    await varientOptions.save().then(async (res) => {
+      if (res) {
+        await Product.findByIdAndUpdate(
+          product_id,
+          {
+            $push: { varientOption: res._id },
+          },
+          {
+            new: true,
+          }
+        );
+      } else {
+        console.log("okk");
+      }
+    });
     return varientOptions;
   },
 };
