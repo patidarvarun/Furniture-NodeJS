@@ -15,8 +15,14 @@ const productReviewType = gql`
     user_id: User
     product_id: Product
   }
+  type ReviewProduct {
+    id: ID
+    message: String
+    rating: String
+    user_id: User
+  }
   type Query {
-    getReviewProduct: [ProReview!]!
+    getReviewProduct: [ProReview]
   }
 
   input ProductReviewInput {

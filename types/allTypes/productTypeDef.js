@@ -8,11 +8,12 @@ const productTypeDefs = gql`
     description: String
     image: String
     quantity: String
-    review: ProReview
+    review: [ReviewProduct]!
     varientOption: VarientOpt
     cat_id: Category
     # offerId: ProductOffer
   }
+
   type Query {
     getAllProduct: [Product]!
     getProductById(id: ID): Product
