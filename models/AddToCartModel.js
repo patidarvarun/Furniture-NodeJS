@@ -6,18 +6,18 @@ const AddToCart = new mongoose.Schema(
     user_id: {
       type: Schema.Types.ObjectId,
       ref: "users",
+      required: true,
     },
     cart: [
       {
-        product_id: {
+        product: {
           type: Schema.Types.ObjectId,
           ref: "products",
+          required: true,
         },
-        quantity: { type: Number },
+        quantity: { type: Number, required: true },
       },
     ],
-
-    isDeleted: { type: Boolean },
   },
   { timestamps: true }
 );

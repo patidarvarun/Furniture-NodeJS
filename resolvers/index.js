@@ -16,6 +16,8 @@ const favoriteMutations = require("./favoriteProduct/mutation");
 const favoriteQueries = require("./favoriteProduct/queries");
 const productReviewQueries = require("./productReview/queries");
 const productReviewMutations = require("./productReview/mutation");
+const cartMutations = require("./cart/mutation");
+const cartQueries = require("./cart/queries");
 
 const resolvers = {
   Query: {
@@ -28,6 +30,7 @@ const resolvers = {
     ...productOfferQueries,
     ...favoriteQueries,
     ...productReviewQueries,
+    ...cartQueries,
   },
   Mutation: {
     ...productMutations,
@@ -39,6 +42,7 @@ const resolvers = {
     ...productOfferMutations,
     ...favoriteMutations,
     ...productReviewMutations,
+    ...cartMutations,
   },
 };
 module.exports = resolvers;

@@ -10,6 +10,7 @@ const productValue = require("./allTypes/productValueType");
 const productOffer = require("./allTypes/productOfferType");
 const favorite = require("./allTypes/favoriteType");
 const review = require("./allTypes/productReviewType");
+const addCart = require("./allTypes/cartType");
 
 const schema = makeExecutableSchema({
   typeDefs: [
@@ -22,6 +23,7 @@ const schema = makeExecutableSchema({
     productOffer,
     favorite,
     review,
+    addCart,
   ],
   resolvers,
 });
