@@ -64,9 +64,36 @@ const cartMutations = {
   },
   updateCartItem: async (parent, args, context, info) => {
     const { cart_id, product_id } = args;
-    console.log("@@@@@", cart_id, "$$$$$$$", product_id);
-
     const { quantity } = args.cart;
+
+    console.log("@@@@@", cart_id, "$$$$$$$", product_id, "carttt", quantity);
+
+    // let cartData = await AddToCarts.findById(cart_id);
+    // let cart1 = cartData.cart.map(async (pro) => {
+    //   console.log("pororororr", pro._id);
+    //   console.log("cartData", cartData.cart);
+    //   await AddToCarts.findByIdAndUpdate(
+    //     cartData.cart,
+    //     {
+    //       $push: { product: product_id, quantity: quantity },
+    //     },
+    //     {
+    //       new: true,
+    //     }
+    //   ).then((data) => {
+    //     console.log("************", data);
+    //   });
+    // });
+    // { $push: { [`cart`]: { product: product_id, quantity: quantity } } },
+    // { new: true }
+
+    // console.log("cartDatacartData", cartData);
+    // .populate({ path: "cart.product" })
+    // .then((data) => {
+    //   console.log("return data@@@@@@@", data);
+    // });
+
+    // return "Product is removed from Cart";
   },
 };
 

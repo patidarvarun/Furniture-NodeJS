@@ -13,6 +13,7 @@ const AddressSchema = new mongoose.Schema(
     },
     city: { type: String, required: [true, "please enter city"] },
     state: { type: String, required: [true, "please enter state"] },
+    country: { type: String, required: [true, "please enter country"] },
     postalCode: { type: Number, required: [true, "Pleade provide postalCode"] },
     user_id: {
       type: Schema.Types.ObjectId,

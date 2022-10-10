@@ -18,6 +18,9 @@ const productReviewQueries = require("./productReview/queries");
 const productReviewMutations = require("./productReview/mutation");
 const cartMutations = require("./cart/mutation");
 const cartQueries = require("./cart/queries");
+const addressMutations = require("./address/mutation");
+const addressQueries = require("./address/queries");
+const orderMutations = require("./order/mutation");
 
 const resolvers = {
   Query: {
@@ -31,6 +34,7 @@ const resolvers = {
     ...favoriteQueries,
     ...productReviewQueries,
     ...cartQueries,
+    ...addressQueries,
   },
   Mutation: {
     ...productMutations,
@@ -43,6 +47,8 @@ const resolvers = {
     ...favoriteMutations,
     ...productReviewMutations,
     ...cartMutations,
+    ...addressMutations,
+    ...orderMutations,
   },
 };
 module.exports = resolvers;
