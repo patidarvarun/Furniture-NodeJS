@@ -9,6 +9,7 @@ const orderMutations = {
       paymentMethod,
       amount,
       shipping_address,
+      transaction_id,
     } = args.order;
     const order = new Order({
       products,
@@ -17,45 +18,46 @@ const orderMutations = {
       paymentMethod,
       amount,
       shipping_address,
+      transaction_id,
     });
     await order.save();
     return "Order Created Successfully";
   },
 
-  //   updateAddress: async (parent, args, context, info) => {
-  //     const { id } = args;
-  //     const {
-  //       address_name,
-  //       address_detail,
-  //       user_id,
-  //       city,
-  //       state,
-  //       country,
-  //       postalCode,
-  //     } = args.address;
+  updateOrder: async (parent, args, context, info) => {
+    const { id } = args;
+    const {
+      products,
+      user_id,
+      status,
+      paymentMethod,
+      amount,
+      shipping_address,
+      transaction_id,
+    } = args.order;
 
-  //     const address = await Address.findByIdAndUpdate(
-  //       id,
-  //       {
-  //         address_name,
-  //         address_detail,
-  //         user_id,
-  //         city,
-  //         state,
-  //         country,
-  //         postalCode,
-  //       },
-  //       {
-  //         new: true,
-  //       }
-  //     );
-  //     return address;
-  //   },
-  //   deleteAddress: async (parent, args, context, info) => {
-  //     const { id } = args;
-  //     await Address.findByIdAndDelete(id);
-  //     return "Address is deleted";
-  //   },
+    const orderUpdate = await Order.findByIdAndUpdate(
+      id,
+      {
+        products,
+        user_id,
+        status,
+        paymentMethod,
+        amount,
+        shipping_address,
+        transaction_id,
+      },
+      {
+        new: true,
+      }
+    );
+    return "Order Update Successfully";
+  },
+  deleteOrder: async (parent, args, context, info) => {
+    const { id } = args;
+    await Order.findByIdAndDelete(id);
+    return "Order is deleted";
+  },
 };
 
 module.exports = orderMutations;

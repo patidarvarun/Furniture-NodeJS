@@ -3,15 +3,37 @@ const { gql } = require("apollo-server-express");
 const orderType = gql`
   type Order {
     id: ID
-    user_id: String
+    user_id: User
+    products: [ProdOrder]
     status: String
+    amount: OrderAmount
+    shipping_address: OrderShipping
     paymentMethod: String
+    transaction_id: String
   }
-
-  #   type Query {
-  #     getAllCategory: [Category]
-  #     getCatByParentId(id: ID): [Category]
-  #   }
+  type ProdOrder {
+    product: Product
+    quantity: String
+  }
+  type OrderAmount {
+    total: String
+    shipping_charge: String
+    currency: String
+    subtotal: String
+  }
+  type OrderShipping {
+    recipient_name: String
+    line1: String
+    line2: String
+    city: String
+    state: String
+    postal_code: String
+    country_code: String
+  }
+  type Query {
+    getAllOrder: [Order]
+    getOrderByUserID(id: ID): [Order]
+  }
   input AmountType {
     total: String
     shipping_charge: String
@@ -19,14 +41,13 @@ const orderType = gql`
     subtotal: String
   }
   input ShippingType {
-    first_name: String
-    last_name: String
-    address_1: String
-    address_2: String
+    recipient_name: String
+    line1: String
+    line2: String
     city: String
     state: String
-    postcode: String
-    country: String
+    postal_code: String
+    country_code: String
   }
   input CartItem {
     product: ID
@@ -40,12 +61,13 @@ const orderType = gql`
     paymentMethod: String
     amount: AmountType
     shipping_address: ShippingType
+    transaction_id: String
   }
 
   type Mutation {
     createOrder(order: OrderInput): String
-    # updateCategory(id: ID, category: CategoryInput1): Category
-    # deleteCategory(id: ID): String
+    updateOrder(id: ID, order: OrderInput): String
+    deleteOrder(id: ID): String
   }
 `;
 module.exports = orderType;
