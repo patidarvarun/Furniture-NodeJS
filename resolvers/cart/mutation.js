@@ -1,4 +1,9 @@
 const AddToCarts = require("../../models/AddToCartModel");
+const Product = require("../../models/ProductModel");
+
+const stripe = require("stripe")(
+  "sk_test_51LabasSBAnAyyheh89V5X2XUcvdbHgZGuYzKTuW6Q2QsvAykAnnIHeymcTPmaWzlXJv5MtIdNyENRxqXkNQ8mHcr00a5Oqd4Gk"
+);
 
 const cartMutations = {
   addToCart: async (parent, args, context, info) => {
@@ -67,33 +72,65 @@ const cartMutations = {
     const { quantity } = args.cart;
 
     console.log("@@@@@", cart_id, "$$$$$$$", product_id, "carttt", quantity);
+  },
 
-    // let cartData = await AddToCarts.findById(cart_id);
-    // let cart1 = cartData.cart.map(async (pro) => {
-    //   console.log("pororororr", pro._id);
-    //   console.log("cartData", cartData.cart);
-    //   await AddToCarts.findByIdAndUpdate(
-    //     cartData.cart,
-    //     {
-    //       $push: { product: product_id, quantity: quantity },
-    //     },
-    //     {
-    //       new: true,
-    //     }
-    //   ).then((data) => {
-    //     console.log("************", data);
-    //   });
-    // });
-    // { $push: { [`cart`]: { product: product_id, quantity: quantity } } },
-    // { new: true }
+  createCheckoutSession: async (parent, args, context, info) => {
+    const { cartId } = args.input;
 
-    // console.log("cartDatacartData", cartData);
-    // .populate({ path: "cart.product" })
-    // .then((data) => {
-    //   console.log("return data@@@@@@@", data);
-    // });
+    let session;
+    var cartItems = await AddToCarts.findById(cartId);
+    var product = cartItems.cart;
+    let productId = [];
+    var item = [];
+    for (let i = 0; i < product.length; i++) {
+      productId.push({
+        id: product[i].product,
+        quantity: product[i].quantity,
+      });
+    }
+    for (let i = 0; i < productId.length; i++) {
+      var proId = await Product.findOne({ _id: { $in: [productId[i].id] } });
+      item.push({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: proId.name,
+          },
+          unit_amount: proId.price * 100,
+        },
+        quantity: productId[i].quantity,
+      });
+    }
 
-    // return "Product is removed from Cart";
+    try {
+      session = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        line_items: item,
+        mode: "payment",
+        success_url: `http://localhost:3000/checkout3?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `http://localhost:3000/cancel`,
+      });
+    } catch (err) {
+      console.log("error", err);
+    }
+    return session.url;
+  },
+
+  retrieveCheckoutSession: async (parent, args, context, info) => {
+    const { sessionId } = args.input;
+
+    let paymentIntent;
+    try {
+      paymentIntent = await stripe.checkout.sessions
+        .retrieve(sessionId)
+        .then((data) => {
+          console.log("$$$$$$$$$$$", data);
+          return data;
+        });
+    } catch (err) {
+      console.log("error", err.message);
+    }
+    return paymentIntent;
   },
 };
 

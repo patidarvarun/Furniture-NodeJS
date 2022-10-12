@@ -1,4 +1,5 @@
 const Order = require("../../models/OrderModel");
+const AddToCarts = require("../../models/AddToCartModel");
 
 const orderMutations = {
   createOrder: async (parent, args, context, info) => {
@@ -51,6 +52,13 @@ const orderMutations = {
         new: true,
       }
     );
+    if (orderUpdate !== null) {
+      let findCart = await AddToCarts.find({ user_id: orderUpdate.user_id });
+      let cart_idd = findCart[0]?._id;
+      let removeCartItem = await AddToCarts.deleteOne(cart_idd);
+    } else {
+      console.log("%%%%%%");
+    }
     return "Order Update Successfully";
   },
   deleteOrder: async (parent, args, context, info) => {

@@ -8,6 +8,7 @@ const ProductSchema = new mongoose.Schema(
     description: { type: String, required: [true, "please enter description"] },
     quantity: { type: Number, required: [true, "Pleade provide quantity"] },
     price: { type: Number, required: [true, "Pleade provide price"] },
+    cartQuantity: { type: Number, default: null },
     status: { type: String },
     cat_id: {
       type: Schema.Types.ObjectId,
