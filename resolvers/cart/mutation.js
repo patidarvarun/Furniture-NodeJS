@@ -107,7 +107,7 @@ const cartMutations = {
         payment_method_types: ["card"],
         line_items: item,
         mode: "payment",
-        success_url: `http://localhost:3000/checkout3?session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `http://localhost:3000/success?session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `http://localhost:3000/cancel`,
       });
     } catch (err) {
