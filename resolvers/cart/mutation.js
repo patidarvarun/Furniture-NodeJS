@@ -1,5 +1,6 @@
 const AddToCarts = require("../../models/AddToCartModel");
 const Product = require("../../models/ProductModel");
+var mongoose = require("mongoose");
 
 const stripe = require("stripe")(
   "sk_test_51LabasSBAnAyyheh89V5X2XUcvdbHgZGuYzKTuW6Q2QsvAykAnnIHeymcTPmaWzlXJv5MtIdNyENRxqXkNQ8mHcr00a5Oqd4Gk"
@@ -67,11 +68,29 @@ const cartMutations = {
 
     return "Product is removed from Cart";
   },
-  updateCartItem: async (parent, args, context, info) => {
-    const { cart_id, product_id } = args;
-    const { quantity } = args.cart;
 
-    console.log("@@@@@", cart_id, "$$$$$$$", product_id, "carttt", quantity);
+  updateCartItem: async (parent, args, context, info) => {
+    var productIds = [];
+    var ccc;
+    const { cart_id, product_id } = args;
+    var id = mongoose.Types.ObjectId(cart_id);
+    // var prod_id = mongoose.Types.ObjectId(product_id);
+    const { quantity } = args.cart;
+    let result = await AddToCarts.findOne({ _id: id });
+
+    for (let i = 0; i < result.cart.length; i++) {
+      productIds.push(
+        result.cart[i].product.toString().replace(/ObjectId\("(.*)"\)/, "$1")
+      );
+    }
+    let index = productIds.indexOf(product_id);
+
+    await AddToCarts.updateOne(
+      { _id: id },
+      {
+        $set: { [`cart.${index}.quantity`]: quantity },
+      }
+    );
   },
 
   createCheckoutSession: async (parent, args, context, info) => {
