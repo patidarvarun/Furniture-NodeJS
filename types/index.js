@@ -14,6 +14,7 @@ const addCart = require("./allTypes/cartType");
 const addressType = require("./allTypes/addressType");
 const orderType = require("./allTypes/orderType");
 const cardTypes = require("./allTypes/paymentCardType");
+const policyType = require("./allTypes/policyType");
 
 const schema = makeExecutableSchema({
   typeDefs: [
@@ -30,6 +31,7 @@ const schema = makeExecutableSchema({
     addressType,
     orderType,
     cardTypes,
+    policyType,
   ],
   resolvers,
 });

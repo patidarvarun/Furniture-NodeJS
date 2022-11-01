@@ -91,6 +91,7 @@ const cartMutations = {
         $set: { [`cart.${index}.quantity`]: quantity },
       }
     );
+    return "Quantity Updated";
   },
 
   createCheckoutSession: async (parent, args, context, info) => {

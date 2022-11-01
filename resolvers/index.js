@@ -24,6 +24,8 @@ const orderMutations = require("./order/mutation");
 const orderQueries = require("./order/queries");
 const paymentCardMutations = require("./saveCard/mutation");
 const paymentCardQueries = require("./saveCard/queries");
+const policyMutations = require("./policy/mutation");
+const policyQueries = require("./policy/queries");
 
 const resolvers = {
   Query: {
@@ -40,6 +42,7 @@ const resolvers = {
     ...addressQueries,
     ...orderQueries,
     ...paymentCardQueries,
+    ...policyQueries,
   },
   Mutation: {
     ...productMutations,
@@ -55,6 +58,7 @@ const resolvers = {
     ...addressMutations,
     ...orderMutations,
     ...paymentCardMutations,
+    ...policyMutations,
   },
 };
 module.exports = resolvers;
