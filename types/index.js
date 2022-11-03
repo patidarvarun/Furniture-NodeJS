@@ -15,6 +15,7 @@ const addressType = require("./allTypes/addressType");
 const orderType = require("./allTypes/orderType");
 const cardTypes = require("./allTypes/paymentCardType");
 const policyType = require("./allTypes/policyType");
+const walletType = require("./allTypes/walletType");
 
 const schema = makeExecutableSchema({
   typeDefs: [
@@ -32,6 +33,7 @@ const schema = makeExecutableSchema({
     orderType,
     cardTypes,
     policyType,
+    walletType,
   ],
   resolvers,
 });
